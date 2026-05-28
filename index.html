@@ -268,6 +268,63 @@
     .pub .venue-tag { display: none; }
   }
 
+  /* Featured work — graphical abstracts */
+  .sub-label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .featured {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 640px) { .featured { grid-template-columns: 1fr; } }
+  .feature {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .feature:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(31,92,86,0.14);
+    border-color: var(--accent-soft);
+  }
+  .feature .fig {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1491 / 1055;
+    object-fit: cover;
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .feature .cap { padding: 16px 18px 18px; }
+  .feature .cap .tag {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .feature .cap h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.28;
+    margin: 6px 0 6px;
+  }
+  .feature .cap .meta { font-size: 13px; color: var(--ink-faint); }
+  .feature .cap .meta .me { color: var(--ink-soft); font-weight: 600; }
+
   /* CV / Experience timeline */
   .cv-block { margin-bottom: 40px; }
   .cv-block:last-child { margin-bottom: 0; }
@@ -341,7 +398,7 @@
   <div class="wrap">
     <div class="eyebrow reveal">Computational Biology &middot; Machine Learning for Molecular Discovery</div>
     <h1 class="reveal">Saveena <span class="accent">Solanki</span></h1>
-    <p class="lede reveal">I build and apply deep-learning methods to understand molecular systems — from how endogenous sterols tune GPCR signalling to scalable models that learn the language of chemistry.</p>
+    <p class="lede reveal">I build deep-learning and multimodal AI frameworks to understand and design targeted therapeutics — from molecular glues and PROTACs to metabolite-mediated protein interactions, and scalable models that learn the language of chemistry.</p>
     <p class="affil reveal">Research Scholar, <strong>Department of Computational Biology, IIIT-Delhi</strong> &middot; New Delhi, India</p>
     <div class="hero-links reveal">
       <a href="https://scholar.google.com/citations?user=5sL2XRYAAAAJ&hl=en" target="_blank" rel="noopener">
@@ -377,23 +434,23 @@
         <span class="sec-num">01</span>
         <h2>Research interests</h2>
       </div>
-      <p class="lead-para reveal">My work sits at the interface of machine learning and molecular biology. I am interested in representation learning for chemistry and proteins, structure-aware deep models for signalling and drug discovery, and turning large biological datasets into mechanistic, testable hypotheses. I also care about clear scientific communication and illustration.</p>
+      <p class="lead-para reveal">My research sits at the intersection of machine learning, molecular biology, and targeted therapeutics. I develop representation-learning and structure-aware deep-learning models for chemistry, proteins, signalling systems, and drug discovery. A central goal of my work is to convert large-scale biological and chemical data into mechanistic, testable hypotheses that can guide therapeutic design. Alongside my scientific work, I care deeply about clear scientific communication, visual explanation, and illustrations that make complex molecular systems accessible.</p>
       <div class="interests reveal">
         <div class="interest">
-          <h3>Deep learning for molecules</h3>
-          <p>Multimodal representation learning that fuses structure, sequence and chemical descriptors into transferable embeddings.</p>
+          <h3>Targeted protein modulation</h3>
+          <p>AI for molecular glues, PROTACs and ternary-complex design — degrading the "undruggable" with selectivity by design.</p>
         </div>
         <div class="interest">
-          <h3>GPCR &amp; signalling</h3>
-          <p>How endogenous sterols and small molecules allosterically modulate the GPCR–Gα interface.</p>
+          <h3>Metabolite-mediated interactions</h3>
+          <p>Modelling how small molecules and metabolites stabilize, weaken or rewire protein–protein interactions.</p>
         </div>
         <div class="interest">
-          <h3>Mechanism-aware ML</h3>
-          <p>Models that respect chemistry — mapping redox landscapes and reaction mechanisms rather than fitting black boxes.</p>
+          <h3>Multimodal molecular ML</h3>
+          <p>Representation learning that fuses structure, graphs, descriptors and chemical language into transferable embeddings.</p>
         </div>
         <div class="interest">
-          <h3>Systems biology</h3>
-          <p>Biological networks as a lens on health and disease, bridging molecular data and modern medicine.</p>
+          <h3>Mechanism-aware models</h3>
+          <p>Structure- and chemistry-aware deep learning that yields interpretable, mechanistic insight rather than black-box scores.</p>
         </div>
       </div>
     </div>
@@ -405,6 +462,54 @@
       <div class="sec-head reveal">
         <span class="sec-num">02</span>
         <h2>Selected publications</h2>
+      </div>
+
+      <div class="sub-label reveal">Featured work</div>
+      <div class="featured reveal">
+        <a class="feature" href="https://doi.org/10.1101/2025.08.28.672835" target="_blank" rel="noopener">
+          <img class="fig" src="images/MG_git.png" alt="MetaboGlue — protein–ligand–protein interaction modeling" loading="lazy">
+          <div class="cap">
+            <span class="tag">Preprint · First author</span>
+            <h3>MetaboGlue: modelling metabolite-mediated protein–ligand–protein interactions</h3>
+            <div class="meta"><span class="me">Solanki S.</span>, … Ahuja G. · bioRxiv</div>
+          </div>
+        </a>
+        <a class="feature" href="#" target="_blank" rel="noopener">
+          <img class="fig" src="images/Synglue_git.png" alt="SynGlue — AI for targeted therapeutics" loading="lazy">
+          <div class="cap">
+            <span class="tag">Preprint · First author</span>
+            <h3>SynGlue: AI for targeted therapeutics — molecular glues &amp; PROTACs</h3>
+            <div class="meta"><span class="me">Solanki S.</span>, … Ahuja G.</div>
+          </div>
+        </a>
+        <a class="feature" href="https://doi.org/10.1101/2025.11.11.687860" target="_blank" rel="noopener">
+          <img class="fig" src="images/CDI.png" alt="Chemical Dice Integrator — multimodal molecular representation learning" loading="lazy">
+          <div class="cap">
+            <span class="tag">Preprint</span>
+            <h3>Chemical Dice Integrator (CDI): multimodal molecular representation learning</h3>
+            <div class="meta">Ahuja G., Kumar S., <span class="me">Solanki S.</span>, et al. · bioRxiv</div>
+          </div>
+        </a>
+        <a class="feature" href="https://doi.org/10.1002/cmtd.202500160" target="_blank" rel="noopener">
+          <img class="fig" src="images/Redox.png" alt="Mechanism-aware deep learning maps the redox landscape of cancer-relevant antioxidants" loading="lazy">
+          <div class="cap">
+            <span class="tag">Journal · 2026</span>
+            <h3>Mechanism-aware deep learning maps the redox landscape of cancer-relevant antioxidants</h3>
+            <div class="meta">Satija S., <span class="me">Solanki S.</span>, Ahuja G. · Chemistry — Methods</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="sub-label reveal" style="margin-top:44px;">All publications</div>
+
+      <div class="pub reveal">
+        <div class="year">2025<div class="venue-tag">PREPRINT</div></div>
+        <div>
+          <h3>MetaboGlue: modelling metabolite-mediated protein–ligand–protein interactions</h3>
+          <p class="authors"><span class="me">Solanki S.</span>, … Ahuja G.</p>
+          <p class="venue">bioRxiv</p>
+          <a class="doi" href="https://doi.org/10.1101/2025.08.28.672835" target="_blank" rel="noopener">doi.org/10.1101/2025.08.28.672835 →</a>
+        </div>
       </div>
 
       <div class="pub reveal">
@@ -433,6 +538,7 @@
           <h3>Mechanism-aware deep learning maps the redox landscape of cancer-relevant antioxidants</h3>
           <p class="authors">Satija S., <span class="me">Solanki S.</span>, Ahuja G.</p>
           <p class="venue">Chemistry — Methods, 6(4), e202500160</p>
+          <a class="doi" href="https://doi.org/10.1002/cmtd.202500160" target="_blank" rel="noopener">doi.org/10.1002/cmtd.202500160 →</a>
         </div>
       </div>
 
