@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saveena Solanki — Computational Biology</title>
+<meta name="description" content="Saveena Solanki — researcher in computational biology and deep learning for molecular discovery, IIIT-Delhi." />
+
+<!-- Fonts: Fraunces (display serif) + IBM Plex Sans (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #FBFAF7;
+    --paper-2: #F3F1EB;
+    --ink: #1A1B1A;
+    --ink-soft: #4A4C49;
+    --ink-faint: #8A8B86;
+    --accent: #1F5C56;
+    --accent-soft: #2E7A72;
+    --line: #E2DFD6;
+    --maxw: 760px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(251,250,247,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+  }
+  nav .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+  }
+  nav .links {
+    display: flex;
+    gap: 26px;
+  }
+  nav .links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--accent); }
+  @media (max-width: 600px) {
+    nav .links { gap: 16px; }
+    nav .links a { font-size: 13px; }
+    nav .name .full { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(40px, 7vw, 62px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--accent); font-style: italic; font-weight: 400; }
+  .lede {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    margin-bottom: 14px;
+  }
+  .affil {
+    font-size: 16px;
+    color: var(--ink-faint);
+    margin-bottom: 34px;
+  }
+  .affil strong { color: var(--ink-soft); font-weight: 500; }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    background: var(--paper);
+    transition: all 0.2s ease;
+  }
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .hero-links svg { width: 15px; height: 15px; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 68px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 38px;
+  }
+  .sec-num {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Research interests */
+  .lead-para {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 34px;
+    max-width: 640px;
+  }
+  .interests {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media (max-width: 560px) { .interests { grid-template-columns: 1fr; } }
+  .interest {
+    background: var(--paper);
+    padding: 22px 24px;
+  }
+  .interest h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .interest p {
+    font-size: 14.5px;
+    color: var(--ink-faint);
+    line-height: 1.55;
+  }
+
+  /* Publications */
+  .pub {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+  }
+  .pub:last-child { border-bottom: none; }
+  .pub .year {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 2px;
+  }
+  .pub .venue-tag {
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-top: 6px;
+  }
+  .pub h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18.5px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .pub .authors {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .pub .authors .me { color: var(--ink); font-weight: 600; }
+  .pub .venue {
+    font-size: 14.5px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .pub a.doi {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .pub a.doi:hover { border-color: var(--accent); }
+  @media (max-width: 560px) {
+    .pub { grid-template-columns: 1fr; gap: 6px; }
+    .pub .venue-tag { display: none; }
+  }
+
+  /* CV / Experience timeline */
+  .cv-block { margin-bottom: 40px; }
+  .cv-block:last-child { margin-bottom: 0; }
+  .cv-block > .label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  .entry:last-child { border-bottom: 1px solid var(--line); }
+  .entry .when {
+    font-size: 14px;
+    color: var(--ink-faint);
+    padding-top: 2px;
+  }
+  .entry .what h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 3px;
+  }
+  .entry .what .where { font-size: 14.5px; color: var(--ink-soft); }
+  .entry .what .desc { font-size: 14px; color: var(--ink-faint); margin-top: 5px; }
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* Footer */
+  footer {
+    padding: 56px 0 64px;
+    text-align: center;
+  }
+  footer .ft-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+  footer .ft-links { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  footer .ft-links a { color: var(--accent); text-decoration: none; font-size: 15px; }
+  footer .ft-links a:hover { text-decoration: underline; }
+  footer .copyright { font-size: 13px; color: var(--ink-faint); }
+
+  /* reveal animation */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="name">Saveena&nbsp;<span class="full">Solanki</span></span>
+    <div class="links">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#cv">CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Computational Biology &middot; Machine Learning for Molecular Discovery</div>
+    <h1 class="reveal">Saveena <span class="accent">Solanki</span></h1>
+    <p class="lede reveal">I build and apply deep-learning methods to understand molecular systems — from how endogenous sterols tune GPCR signalling to scalable models that learn the language of chemistry.</p>
+    <p class="affil reveal">Research Scholar, <strong>Department of Computational Biology, IIIT-Delhi</strong> &middot; New Delhi, India</p>
+    <div class="hero-links reveal">
+      <a href="https://scholar.google.com/citations?user=5sL2XRYAAAAJ&hl=en" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://orcid.org/0000-0003-1079-9349" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.588-1.444 3.588-3.722 0-2.016-1.091-3.722-3.588-3.722h-2.297z"/></svg>
+        ORCID
+      </a>
+      <a href="https://www.linkedin.com/in/saveenasolanki/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.researchgate.net/profile/Saveena-Solanki" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.213-.738.32-1.227.32-.535 0-.892-.12-1.21-.36a1.838 1.838 0 0 1-.59-.96 5.5 5.5 0 0 1-.123-.728 10.483 10.483 0 0 1-.045-1.07c-.003-.39 0-.717.014-.998.014-.282.04-.52.072-.717.032-.196.084-.39.144-.566.144-.456.392-.745.726-.963.334-.218.726-.32 1.18-.32.474 0 .848.108 1.124.336.276.228.46.567.553 1.018.014.06.052.09.116.083l1.064-.146c.072-.01.108-.06.108-.146a4.193 4.193 0 0 0-.166-.59 2.96 2.96 0 0 0-.633-1.012 3.04 3.04 0 0 0-1.084-.7A4.064 4.064 0 0 0 19.586 0zM8.217 5.836c-1.69 0-2.79.97-2.79 2.466 0 1.232.738 1.987 2.222 2.39l.768.206c1.02.276 1.41.566 1.41 1.137 0 .628-.5 1.02-1.41 1.02-.84 0-1.41-.36-1.55-1.137l-1.4.275c.222 1.354 1.236 2.04 2.95 2.04 1.866 0 3.012-.94 3.012-2.512 0-1.275-.74-2.012-2.354-2.452l-.756-.205c-.92-.245-1.3-.526-1.3-1.057 0-.586.46-.94 1.226-.94.766 0 1.236.336 1.376.984l1.354-.275c-.234-1.255-1.197-1.93-2.804-1.93zM3.566 7.025a.566.566 0 0 0-.566.566v9.243c0 .312.254.566.566.566h.853a.566.566 0 0 0 .566-.566V7.59a.566.566 0 0 0-.566-.566h-.853zM.853 10.04A.853.853 0 0 0 0 10.893v6.51c0 .312.254.566.566.566h.287a.853.853 0 0 0 .853-.853v-6.51a.566.566 0 0 0-.566-.566H.853z"/></svg>
+        ResearchGate
+      </a>
+      <a href="mailto:saveenas@iiitd.ac.in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">01</span>
+        <h2>Research interests</h2>
+      </div>
+      <p class="lead-para reveal">My work sits at the interface of machine learning and molecular biology. I am interested in representation learning for chemistry and proteins, structure-aware deep models for signalling and drug discovery, and turning large biological datasets into mechanistic, testable hypotheses. I also care about clear scientific communication and illustration.</p>
+      <div class="interests reveal">
+        <div class="interest">
+          <h3>Deep learning for molecules</h3>
+          <p>Multimodal representation learning that fuses structure, sequence and chemical descriptors into transferable embeddings.</p>
+        </div>
+        <div class="interest">
+          <h3>GPCR &amp; signalling</h3>
+          <p>How endogenous sterols and small molecules allosterically modulate the GPCR–Gα interface.</p>
+        </div>
+        <div class="interest">
+          <h3>Mechanism-aware ML</h3>
+          <p>Models that respect chemistry — mapping redox landscapes and reaction mechanisms rather than fitting black boxes.</p>
+        </div>
+        <div class="interest">
+          <h3>Systems biology</h3>
+          <p>Biological networks as a lens on health and disease, bridging molecular data and modern medicine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">02</span>
+        <h2>Selected publications</h2>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2025<div class="venue-tag">JOURNAL</div></div>
+        <div>
+          <h3>Deep learning reveals endogenous sterols as allosteric modulators of the GPCR–Gα interface</h3>
+          <p class="authors"><span class="me">Solanki S.</span>, Sharma A.K., Arora S., Kumar S., Gautam V., Dixit N.K., Subramanian K., Ghosh T.S., Sengupta D., Gupta S.K., Murugan A.N., Sharma D., Ahuja G.</p>
+          <p class="venue">eLife</p>
+          <a class="doi" href="https://doi.org/10.7554/eLife.106397" target="_blank" rel="noopener">doi.org/10.7554/eLife.106397 →</a>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2025<div class="venue-tag">PREPRINT</div></div>
+        <div>
+          <h3>Chemical Dice Integrator (CDI): a scalable framework for multimodal molecular representation learning</h3>
+          <p class="authors">Ahuja G., Kumar S., <span class="me">Solanki S.</span>, Gupta M., Mohanty S.K., Satija S., Chauhan S., Duari S., Sharma A., Gautam V., Arora S., Shome R., Sinha S., Sharma A.K., Mittal A., Sengupta D., Murugan N.A.</p>
+          <p class="venue">bioRxiv</p>
+          <a class="doi" href="https://doi.org/10.1101/2025.11.11.687860" target="_blank" rel="noopener">doi.org/10.1101/2025.11.11.687860 →</a>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2026<div class="venue-tag">JOURNAL</div></div>
+        <div>
+          <h3>Mechanism-aware deep learning maps the redox landscape of cancer-relevant antioxidants</h3>
+          <p class="authors">Satija S., <span class="me">Solanki S.</span>, Ahuja G.</p>
+          <p class="venue">Chemistry — Methods, 6(4), e202500160</p>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2020<div class="venue-tag">DATASET</div></div>
+        <div>
+          <h3>The role of the systems biology program in health and disease: from biological networks to modern medicine</h3>
+          <p class="authors"><span class="me">Solanki S.</span></p>
+          <p class="venue">Zenodo</p>
+          <a class="doi" href="https://doi.org/10.5281/zenodo.4266067" target="_blank" rel="noopener">doi.org/10.5281/zenodo.4266067 →</a>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2019<div class="venue-tag">CONFERENCE</div></div>
+        <div>
+          <h3>Improved bioconversion of corn stover into polyhydroxyalkanoate (PHA) using Geobacillus sp. biofilm</h3>
+          <p class="authors"><span class="me">Solanki S.</span>, Govil T., Kumar S., Salem D.R., Sani R.K.</p>
+          <p class="venue">Intl. Conf. on Recent Trends in Biotechnology &amp; Bioinformatics (ICBAB), JUIT</p>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2019<div class="venue-tag">RESEARCH</div></div>
+        <div>
+          <h3>Engineering Geobacillus sp. LC-41 for resistance towards catabolite repression</h3>
+          <p class="authors">Hogan Z., <span class="me">Solanki S.</span>, Govil T., Salem D.R., Sani R.K.</p>
+          <p class="venue">BuG ReMeDEE Consortium, South Dakota School of Mines &amp; Technology</p>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2018<div class="venue-tag">JOURNAL</div></div>
+        <div>
+          <h3>Effect of growth hormones on in-vitro propagation and secondary metabolite production in <em>Stevia rebaudiana</em></h3>
+          <p class="authors"><span class="me">Solanki S.</span> et al.</p>
+          <p class="venue">Plant biotechnology &amp; tissue culture</p>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="year">2018<div class="venue-tag">RESEARCH</div></div>
+        <div>
+          <h3>GC analysis of in-vitro developed shoots of <em>Stevia rebaudiana</em> through rapid tissue culture</h3>
+          <p class="authors"><span class="me">Solanki S.</span>, Singh A., Sood H.</p>
+          <p class="venue">Direct organogenesis for rapid in-vitro propagation of <em>Stevia rebaudiana</em></p>
+        </div>
+      </div>
+
+      <p style="margin-top:30px;font-size:14.5px;color:var(--ink-faint);" class="reveal">A complete and current list is available on <a href="https://scholar.google.com/citations?user=5sL2XRYAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">Google Scholar</a>.</p>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">03</span>
+        <h2>Experience &amp; education</h2>
+      </div>
+
+      <div class="cv-block reveal">
+        <div class="label">Research</div>
+        <div class="entry">
+          <div class="when">2022 — Present</div>
+          <div class="what">
+            <h4>Research Scholar — Computational Biology</h4>
+            <div class="where">Indraprastha Institute of Information Technology (IIIT-Delhi)</div>
+            <div class="desc">Deep learning for molecular systems — GPCR signalling, multimodal molecular representation learning, and mechanism-aware models.</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2019</div>
+          <div class="what">
+            <h4>Research Assistant — Sani Lab / BuG ReMeDEE Consortium</h4>
+            <div class="where">South Dakota School of Mines &amp; Technology, USA</div>
+            <div class="desc">Engineering thermophilic <em>Geobacillus</em> strains for biopolymer (PHA) production and resistance to catabolite repression; designed wet-lab experiments and supervised undergraduate researchers.</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2018</div>
+          <div class="what">
+            <h4>Research Assistant — Microbial Fuel Cells</h4>
+            <div class="where">Netaji Subhas Institute of Technology (NSIT), Delhi</div>
+            <div class="desc">Designed and fabricated two-cell microbial fuel cells for simultaneous wastewater treatment and electricity generation.</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2017</div>
+          <div class="what">
+            <h4>Research Fellow — Enzyme Biocatalysis</h4>
+            <div class="where">Delhi Technological University (DTU)</div>
+            <div class="desc">Lipase-mediated transesterification for biodiesel production; protein estimation and lipolytic-potential assays.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block reveal">
+        <div class="label">Education</div>
+        <div class="entry">
+          <div class="when">2020 — 2022</div>
+          <div class="what">
+            <h4>M.Tech, Biotechnology</h4>
+            <div class="where">Maharshi Dayanand University</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2015 — 2019</div>
+          <div class="what">
+            <h4>B.Tech (Hons.), Biotechnology</h4>
+            <div class="where">Jaypee University of Information Technology (JUIT), Waknaghat</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block reveal">
+        <div class="label">Science communication &amp; ventures</div>
+        <div class="entry">
+          <div class="when">2021 — Present</div>
+          <div class="what">
+            <h4>Founder &amp; CEO — BioSolanki</h4>
+            <div class="where">Building a biotechnology ecosystem for students and professionals</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2016 — 2022</div>
+          <div class="what">
+            <h4>Scientific Illustrator &amp; Consultant</h4>
+            <div class="where">SciIllustrator (Founder) · Kolabtree</div>
+            <div class="desc">Graphical abstracts, infographics and technical figures for publications, grants and outreach (BioRender, Adobe).</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">2020 — Present</div>
+          <div class="what">
+            <h4>Regional Ambassador — Breast Cancer Hub</h4>
+            <div class="where">Awareness, screening access and patient guidance in developing countries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block reveal">
+        <div class="label">Honours, certifications &amp; service</div>
+        <div class="entry">
+          <div class="when">2025 — 2026</div>
+          <div class="what">
+            <h4>Lindau Nobel Laureate Meeting — Chemistry</h4>
+            <div class="where">Selected participant</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">Certifications</div>
+          <div class="what">
+            <h4>Writing in the Sciences — Stanford University</h4>
+            <div class="where">Understanding Research Methods · Recent Advances in Molecular Biology: A Multiomics Approach</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">Membership</div>
+          <div class="what">
+            <h4>OWSD — Organization for Women in Science for the Developing World</h4>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="when">Skills</div>
+          <div class="what">
+            <h4>Artificial Intelligence · Statistics &amp; Design of Experiments · Scientific Illustration</h4>
+            <div class="where">Languages: English, Hindi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-title reveal">Let's connect</div>
+    <div class="ft-links reveal">
+      <a href="https://scholar.google.com/citations?user=5sL2XRYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://orcid.org/0000-0003-1079-9349" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://www.linkedin.com/in/saveenasolanki/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.researchgate.net/profile/Saveena-Solanki" target="_blank" rel="noopener">ResearchGate</a>
+      <a href="mailto:saveenas@iiitd.ac.in">Email</a>
+    </div>
+    <div class="copyright reveal">© <span id="yr"></span> Saveena Solanki · New Delhi, India</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // staggered hero reveal + scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    if (el.closest('header.hero')) el.style.transitionDelay = (i * 0.08) + 's';
+    obs.observe(el);
+  });
+</script>
+
+</body>
+</html>
